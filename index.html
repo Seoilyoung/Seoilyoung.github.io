@@ -8,6 +8,7 @@
 	<body>
  		hello world!.
 
+
  		7584. 자가 복제 문자열
  		001 0 011 0 001 1 011 0 001 0 011 1 001 1 011 
 
@@ -56,5 +57,48 @@ int main(int argc, char** argv)
 	return 0;
 }
 
+7510. 상원이의 연속 합
+소인수 분해 문제
+2빼고 경우의 수 구하면 된다. 
+ex) 48 = 2 * 2 * 2 * 2 * 3
+   여기서 2빼면 남는 약수는 3
+   그러므로 경우의수는 2
+ex) 135 = 3 * 3 * 3 * 5
+    경우의 수는 4*2=8
+ex) 15 = 3*5
+   경우의 수는 2*2=4
+
+(연속되는 수로 하려면 무조건 홀수여야한다. 예외로 2가 있는데 7+8로 홀수를 표현할 수 있지만 그이상의 짝수의 경우에는 연속되는 수로 홀수를 절대 표현할 수 없다.)
+(그러므로 짝수는 있으나마나한 약수이므로 2로 다 나눠버리고 홀수일 경우만 계산하여 for문의 범위를 줄인다.)
+<코드>
+#include<iostream>
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case, T;
+    long N,answer;
+    
+	cin>>T;
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+		cin >> N;
+        answer = 1;
+        while(N%2==0)
+            N /= 2;
+        for(int i=3 ; i*i<=N; i++){
+            int count =1;
+            while(N%i==0){
+                count++;
+                N /= i;
+            }
+            answer *= count;
+        }
+        if(N!=1)
+            answer *= 2;
+        cout << "#" << test_case << " " << answer << endl;
+	}
+	return 0;
+}
 	</body>
 </html>
