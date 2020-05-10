@@ -6,99 +6,99 @@
 	</head>
 	
 	<body>
- 		hello world!.
+ 		hello world!.<br />
+<br />
+<br />
+ 		7584. 자가 복제 문자열<br />
+ 		001 0 011 0 001 1 011 0 001 0 011 1 001 1 011 <br />
+<br />
+ 		'001 X 011'을 반복한다.<br />
+ 		<br />
+ 		4의 배수에서 달라지는데 여기에도 규칙이 존재한다.<br />
+ 		4의 배수만 골라서 빼내면 <br />
+ 		'001 X 011'을 반복한다.<br />
+ 		<br />
+ 		따라서 4의 배수가 아니면 001 X 011을 출력하면 되고<br />
+ 		4의 배수이면 4로 나눠지지 않을 때까지 나누고<br />
+ 		001 X 011에서 출력하면 된다.<br />
+<br />
+<br />
+<br />
+ 		문제에서 K의 최대 범위가 10^18이므로 int 가 아닌 <br />
+ 		long long을 사용하도록 한다.<br />
+<br />
+<br />
+ 		<코드><br />
+ 		#include<iostream><br />
 
-
- 		7584. 자가 복제 문자열
- 		001 0 011 0 001 1 011 0 001 0 011 1 001 1 011 
-
- 		'001 X 011'을 반복한다.
- 		
- 		4의 배수에서 달라지는데 여기에도 규칙이 존재한다.
- 		4의 배수만 골라서 빼내면 
- 		'001 X 011'을 반복한다.
- 		
- 		따라서 4의 배수가 아니면 001 X 011을 출력하면 되고
- 		4의 배수이면 4로 나눠지지 않을 때까지 나누고
- 		001 X 011에서 출력하면 된다.
-
-
-
- 		문제에서 K의 최대 범위가 10^18이므로 int 가 아닌 
- 		long long을 사용하도록 한다.
-
-
- 		<코드>
- 		#include<iostream>
-
-using namespace std;
-    int arr[7] ={0,0,1,0,0,1,1};
-
-void Cal_answer(long long K) {
-    if(K % 4 != 0)
-        	cout << arr[(K-1) % 8] << endl;
-        else{
-            K /= 4;
-            Cal_answer(K);
-        }
-}
-
-int main(int argc, char** argv)
-{
-	int test_case, T;
-    long long K;
-	cin>>T;
-	for(test_case = 1; test_case <= T; ++test_case)
-	{
-		cin >> K;
-        cout << "#" << test_case << " ";
-        Cal_answer(K);
-	}
-	return 0;
-}
-
-7510. 상원이의 연속 합
-소인수 분해 문제
-2빼고 경우의 수 구하면 된다. 
-ex) 48 = 2 * 2 * 2 * 2 * 3
-   여기서 2빼면 남는 약수는 3
-   그러므로 경우의수는 2
-ex) 135 = 3 * 3 * 3 * 5
-    경우의 수는 4*2=8
-ex) 15 = 3*5
-   경우의 수는 2*2=4
-
-(연속되는 수로 하려면 무조건 홀수여야한다. 예외로 2가 있는데 7+8로 홀수를 표현할 수 있지만 그이상의 짝수의 경우에는 연속되는 수로 홀수를 절대 표현할 수 없다.)
-(그러므로 짝수는 있으나마나한 약수이므로 2로 다 나눠버리고 홀수일 경우만 계산하여 for문의 범위를 줄인다.)
-<코드>
-#include<iostream>
-using namespace std;
-
-int main(int argc, char** argv)
-{
-	int test_case, T;
-    long N,answer;
-    
-	cin>>T;
-	for(test_case = 1; test_case <= T; ++test_case)
-	{
-		cin >> N;
-        answer = 1;
-        while(N%2==0)
-            N /= 2;
-        for(int i=3 ; i*i<=N; i++){
-            int count =1;
-            while(N%i==0){
-                count++;
-                N /= i;
-            }
-            answer *= count;
-        }
-        if(N!=1)
-            answer *= 2;
-        cout << "#" << test_case << " " << answer << endl;
-	}
-	return 0;
+using namespace std;<br />
+    int arr[7] ={0,0,1,0,0,1,1};<br />
+<br />
+void Cal_answer(long long K) {<br />
+    if(K % 4 != 0)<br />
+        	cout << arr[(K-1) % 8] << endl;<br />
+        else{<br />
+            K /= 4;<br />
+            Cal_answer(K);<br />
+        }<br />
+}<br />
+<br />
+int main(int argc, char** argv)<br />
+{<br />
+	int test_case, T;<br />
+    long long K;<br />
+	cin>>T;<br />
+	for(test_case = 1; test_case <= T; ++test_case)<br />
+	{<br />
+		cin >> K;<br />
+        cout << "#" << test_case << " ";<br />
+        Cal_answer(K);<br />
+	}<br />
+	return 0;<br />
+}<br />
+<br />
+7510. 상원이의 연속 합<br />
+소인수 분해 문제<br />
+2빼고 경우의 수 구하면 된다. <br />
+ex) 48 = 2 * 2 * 2 * 2 * 3<br />
+   여기서 2빼면 남는 약수는 3<br />
+   그러므로 경우의수는 2<br />
+ex) 135 = 3 * 3 * 3 * 5<br />
+    경우의 수는 4*2=8<br />
+ex) 15 = 3*5<br />
+   경우의 수는 2*2=4<br />
+<br />
+(연속되는 수로 하려면 무조건 홀수여야한다. 예외로 2가 있는데 7+8로 홀수를 표현할 수 있지만 그이상의 짝수의 경우에는 연속되는 수로 홀수를 절대 표현할 수 없다.)<br />
+(그러므로 짝수는 있으나마나한 약수이므로 2로 다 나눠버리고 홀수일 경우만 계산하여 for문의 범위를 줄인다.)<br />
+<코드><br />
+#include<iostream><br />
+using namespace std;<br />
+<br />
+int main(int argc, char** argv)<br />
+{<br />
+	int test_case, T;<br />
+    long N,answer;<br />
+    <br />
+	cin>>T;<br />
+	for(test_case = 1; test_case <= T; ++test_case)<br />
+	{<br />
+		cin >> N;<br />
+        answer = 1;<br />
+        while(N%2==0)<br />
+            N /= 2;<br />
+        for(int i=3 ; i*i<=N; i++){<br />
+            int count =1;<br />
+            while(N%i==0){<br />
+                count++;<br />
+                N /= i;<br />
+            }<br />
+            answer *= count;<br />
+        }<br />
+        if(N!=1)<br />
+            answer *= 2;<br />
+        cout << "#" << test_case << " " << answer << endl;<br />
+	}<br />
+	return 0;<br />
 }
 	</body>
 </html>
