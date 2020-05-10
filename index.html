@@ -6,6 +6,55 @@
 	</head>
 	
 	<body>
- 		hello world!
+ 		hello world!.
+
+ 		7584. 자가 복제 문자열
+ 		001 0 011 0 001 1 011 0 001 0 011 1 001 1 011 
+
+ 		'001 X 011'을 반복한다.
+ 		
+ 		4의 배수에서 달라지는데 여기에도 규칙이 존재한다.
+ 		4의 배수만 골라서 빼내면 
+ 		'001 X 011'을 반복한다.
+ 		
+ 		따라서 4의 배수가 아니면 001 X 011을 출력하면 되고
+ 		4의 배수이면 4로 나눠지지 않을 때까지 나누고
+ 		001 X 011에서 출력하면 된다.
+
+
+
+ 		문제에서 K의 최대 범위가 10^18이므로 int 가 아닌 
+ 		long long을 사용하도록 한다.
+
+
+ 		<코드>
+ 		#include<iostream>
+
+using namespace std;
+    int arr[7] ={0,0,1,0,0,1,1};
+
+void Cal_answer(long long K) {
+    if(K % 4 != 0)
+        	cout << arr[(K-1) % 8] << endl;
+        else{
+            K /= 4;
+            Cal_answer(K);
+        }
+}
+
+int main(int argc, char** argv)
+{
+	int test_case, T;
+    long long K;
+	cin>>T;
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+		cin >> K;
+        cout << "#" << test_case << " ";
+        Cal_answer(K);
+	}
+	return 0;
+}
+
 	</body>
 </html>
